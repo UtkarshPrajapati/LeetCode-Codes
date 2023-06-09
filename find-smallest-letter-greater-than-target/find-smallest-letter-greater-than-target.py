@@ -1,5 +1,8 @@
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        i=0;n=len(letters)
-        while i<n and letters[i]<=target: i+=1
-        return letters[i] if i<n else letters[0]
+        l, r = 0, len(letters)
+        while l < r:
+            mid = (l + r) // 2
+            if letters[mid] > target: r = mid
+            else: l = mid + 1
+        return letters[r] if r < len(letters) else letters[0]

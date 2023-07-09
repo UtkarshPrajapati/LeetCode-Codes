@@ -1,15 +1,16 @@
 class Solution:
     def largestVariance(self, s: str) -> int:
-        count1,count2,max_variance = 0,0,0
-        pairs = [(l1, l2) for l1 in set(s) for l2 in set(s) if l1 != l2]
-        for runs in range(2):
-            for pair in pairs:
-                count1 = count2 = 0
-                for letter in s:
-                    if letter not in pair: continue
-                    if letter == pair[0]: count1 += 1
-                    elif letter == pair[1]: count2 += 1
-                    if count1 < count2: count1 = count2 = 0
-                    elif count1 > 0 and count2 > 0: max_variance = max(max_variance, count1 - count2)
-            s = s[::-1]
-        return max_variance
+        result,count,index = 0,defaultdict(int),defaultdict(list)
+        for i,ch in enumerate(s):
+            count[ch] += 1
+            index[ch].append((i, ch))
+        for a, b in itertools.permutations(count.keys(), 2):
+            total, flag = 0, False
+            if count[b] - 1 > result:
+                for _, x in sorted(index[a] + index[b]):
+                    if x == a and (flag := total > 0): total -= 1
+                    elif x == b:
+                        result = max(result, total + flag)
+                        total += 1
+        return result
+        

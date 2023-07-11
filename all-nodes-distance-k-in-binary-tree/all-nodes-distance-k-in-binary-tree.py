@@ -2,7 +2,7 @@ class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
         def buildgraph(node,parent,graph):
             if not node: return
-            if node not in graph: graph[node]=[]
+            graph.setdefault(node, [])
             if parent: graph[parent].append(node);graph[node].append(parent)
             buildgraph(node.left, node, graph)
             buildgraph(node.right, node, graph)

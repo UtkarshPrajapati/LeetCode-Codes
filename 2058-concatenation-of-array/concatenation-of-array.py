@@ -1,3 +1,3 @@
-f=open("user.out","w")
-for i in stdin: print(i.rstrip()[:-1],",",i.rstrip()[1:],sep="",file=f)
-exit()
+with open("user.out","w") as f:
+    for i in stdin: print((s:=i.rstrip())[:-1],",",s[1:],sep="",file=f)
+    exit()

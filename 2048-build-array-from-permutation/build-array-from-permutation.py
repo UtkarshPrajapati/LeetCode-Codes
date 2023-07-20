@@ -1,3 +1,2 @@
 class Solution:
-    def buildArray(self, nums: List[int]) -> List[int]:
-        return [nums[i] for i in nums]
+    def buildArray(self,n): return [n[i] for i in n]

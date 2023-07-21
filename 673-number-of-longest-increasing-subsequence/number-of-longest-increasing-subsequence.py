@@ -8,4 +8,4 @@ class Solution:
                     if t>l[i]: l[i],c[i]=t,c[j]
                     elif t==l[i]: c[i]+=c[j]
         m=max(l)
-        return sum(c[i] for i in range(n) if l[i] ==m)
+        return sum(ci for li,ci in zip(l,c) if li==m)

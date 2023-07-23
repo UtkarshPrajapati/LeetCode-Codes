@@ -1,3 +1,15 @@
 class Solution:
-    def allPossibleFBT(self, n: int):
-        return (f:=cache(lambda n,dp=(lambda:{**{i:[] for i in range(0,n,2)},**{1:[TreeNode(0)]}})(): dp[n] if n in dp else [TreeNode(0,l,r) for i in range(n) for l in f(i) for r in f(n-i-1)]))(n)
+    def allPossibleFBT(self, n: int) -> List[TreeNode]:
+        if n % 2 == 0:
+            return []
+        dp = [[] for _ in range(n + 1)]
+        dp[1] = [TreeNode(0)]
+        for i in range(3, n + 1, 2):
+            for j in range(1, i, 2):
+                for left in dp[j]:
+                    for right in dp[i - j - 1]:
+                        root = TreeNode(0)
+                        root.left = left
+                        root.right = right
+                        dp[i].append(root)
+        return dp[n]

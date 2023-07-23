@@ -1,15 +1,4 @@
 class Solution:
-    def allPossibleFBT(self,n):
-            dp={0:[],1:[TreeNode()]}
-            for i in range(0,n,2): dp[i]=[]
-            @cache
-            def backtrack(n):
-                if n in dp: return dp[n]
-                res=[]
-                for l in range(n):
-                    lt,rt=backtrack(l),backtrack(n-l-1)
-                    for t1 in lt:
-                        for t2 in rt: res.append(TreeNode(0,t1,t2))
-                dp[n]=res
-                return res
-            return backtrack(n)
+    def allPossibleFBT(self, n: int):
+        dp={**{i:[] for i in range(0,n,2)},**{1:[TreeNode(0)]}}
+        return (bt:=cache(lambda n: dp[n] if n in dp else [TreeNode(0,l,r) for i in range(n) for l in bt(i) for r in bt(n-i-1)]))(n)

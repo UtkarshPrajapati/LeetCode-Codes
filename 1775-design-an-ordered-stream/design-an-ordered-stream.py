@@ -1,10 +1,8 @@
 class OrderedStream:
-    def __init__(s,n):
-        s.l,s.t=[None]*n,0
-    def insert(s,idKey,value):
-        s.l[idKey-1]=value
-        res=[]
-        for i in range(s.t,len(s.l)):
-            if s.l[i]: res.append(s.l[i]);s.t+=1
-            else: break
-        return res
+    def __init__(self,n):
+        self.t,self.l=1,[None]*(n+2)
+    def insert(self,idKey,value):
+        self.l[idKey]=value
+        if idKey==self.t:
+            while self.l[self.t]: self.t+=1
+            return self.l[idKey:self.t]

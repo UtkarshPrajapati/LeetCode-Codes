@@ -7,6 +7,5 @@ class Solution:
             if i<=0 and j<=0: return 0.5
             if i<=0: return 1
             if j<=0: return 0
-            d[(i,j)]=sum(dp(i+k-4,j-k) for k in range(4))/4
-            return d[(i,j)]
+            return d.setdefault((i,j),sum(dp(i+k-4,j-k) for k in range(4))/4)
         return dp(n,n)

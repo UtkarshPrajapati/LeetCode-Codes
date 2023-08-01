@@ -4,5 +4,5 @@ class Solution:
         while stk:
             node,path=stk.pop()
             res+=[path]*(len(path)==k)
-            stk+=[(i,path+[i]) for i in range(node-1,0,-1)]
+            stk.extend(map(lambda i:(i,path+[i]),range(node-1,0,-1)))
         return res

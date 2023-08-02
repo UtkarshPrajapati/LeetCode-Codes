@@ -3,10 +3,7 @@ class Solution:
         def bt(c):
             if len(c)==len(nums): a.append(c[:]);return
             for i in nums:
-                if i not in c:
-                    c.append(i)
-                    bt(c)
-                    c.pop()
+                if i not in c: bt(c+[i])
         a=[]
         bt([])
         return a

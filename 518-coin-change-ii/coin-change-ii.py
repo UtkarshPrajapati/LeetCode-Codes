@@ -1,6 +1,6 @@
 class Solution:
-    def change(self, amount: int, coins: List[int]) -> int:
-        dp = [1]+[0]*amount
-        for coin in coins:
-            for j in range(coin, amount + 1): dp[j] += dp[j - coin]
-        return dp[amount]
+    def change(self,amt,coins):
+        dp=[1]+[0]*amt
+        for i in coins:
+            for j in range(i,amt+1): dp[j]+=dp[j-i]
+        return dp[amt]

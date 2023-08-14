@@ -1,6 +1,8 @@
 class Solution:
     def findKthLargest(self,a,k):
         def partition(l,r):
+            pi=random.randint(l,r)
+            a[pi],a[r]=a[r],a[pi]
             p,i=a[r],l
             for j in range(l,r):
                 if a[j]>p: a[i],a[j]=a[j],a[i];i+=1

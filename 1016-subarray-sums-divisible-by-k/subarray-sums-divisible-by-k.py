@@ -1,6 +1,6 @@
 class Solution:
     def subarraysDivByK(self, a: List[int], k: int) -> int:
-        n=len(a);p,r=[0]*(n+1),[0]*k
-        for i in range(n): p[i+1]=p[i]+a[i]
-        for i in range(n+1): r[p[i]%k]+=1
-        return sum(i*(i-1)//2 for i in r)
+        n,r=len(a),[0]*k
+        for i in range(1,n): a[i]+=a[i-1]
+        for i in range(n): r[a[i]%k]+=1
+        return sum(i*(i-1)//2 for i in r)+r[0]

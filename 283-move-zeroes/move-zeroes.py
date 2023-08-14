@@ -1,7 +1,7 @@
 class Solution:
     def moveZeroes(self,a):
-        b,n=[],len(a)
-        for i in range(n):
-            if a[i]!=0: b.append(a[i])
-        nums=b+[0]*(n-len(b))
-        a[:]=nums[:]
+        i,c=0,0
+        while i<len(a):
+            if a[i]==0: a.pop(i);c+=1
+            else: i+=1
+        a.extend([0]*c)

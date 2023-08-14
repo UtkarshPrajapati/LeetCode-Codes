@@ -1,6 +1,5 @@
 class Solution:
     def findKthLargest(self,a,k):
-        @cache
         def partition(l,r):
             pi=randrange(l,r+1)
             a[pi],a[r]=a[r],a[pi]

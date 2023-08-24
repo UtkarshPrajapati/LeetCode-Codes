@@ -1,5 +1,5 @@
 class Solution:
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+    def kthSmallest(self,root,k):
         res,k=[None],[k]
         def inorder(node):
             if not node: return

@@ -5,7 +5,7 @@ class Solution:
         def f(n,lev):
             if lev==len(l): l.append([])
             l[lev].insert(0,n.val) if lev%2 else l[lev].append(n.val)
-            for c in [n.left,n.right]:
-                if c: f(c,lev+1)
+            if n.left: f(n.left,lev+1)
+            if n.right: f(n.right,lev+1)
         f(root,0)
         return l

@@ -3,12 +3,9 @@ class Solution:
         if not root: return []
         l=[]
         def f(n,lev):
-            if n.left: 
-                if lev==len(l): l.append([])
-                l[lev].append(n.left.val);f(n.left,lev+1)
-            if n.right: 
-                if lev==len(l): l.append([])
-                l[lev].append(n.right.val);f(n.right,lev+1)
-        l.append([root.val])
-        f(root,1)
-        return [l[i] if i%2==0 else l[i][::-1] for i in range(len(l))]
+            if lev==len(l): l.append([])
+            l[lev].insert(0,n.val) if lev%2 else l[lev].append(n.val)
+            for c in [n.left,n.right]:
+                if c: f(c,lev+1)
+        f(root,0)
+        return l

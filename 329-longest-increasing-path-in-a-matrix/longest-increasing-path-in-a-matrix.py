@@ -13,8 +13,4 @@ class Solution:
             if i+1<m and c<mat[i+1][j]: cnt=max(cnt,f(i+1,j)+1)
             dp[i][j]=cnt
             return cnt
-        a=0
-        for i in range(m):
-            for j in range(n):
-                a=max(a,f(i,j))
-        return a
+        return max(f(i,j) for i in range(m) for j in range(n))

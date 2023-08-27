@@ -6,5 +6,7 @@ class Solution:
         for i in range(n):
             for k in dp[stones[i]]:
                 for step in [k-1,k,k+1]:
-                    if step and stones[i]+step in dp: dp[stones[i]+step].add(step)
-        return len(dp[stones[-1]])>0
+                    if step and stones[i]+step in dp:
+                        dp[stones[i]+step].add(step)
+                        if stones[i]+step==stones[-1]: return True
+        return False

@@ -1,7 +1,11 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        s,a=[],head
-        while a:
-            s.append(a.val)
-            a=a.next
-        return s==s[::-1]
+        rev, slow, fast = None, head, head
+        while fast and fast.next:
+            fast = fast.next.next
+            rev, rev.next, slow = slow, rev, slow.next
+        if fast:
+            slow = slow.next
+        while rev and rev.val == slow.val:
+            slow, rev = slow.next, rev.next
+        return not rev

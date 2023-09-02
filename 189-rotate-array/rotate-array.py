@@ -1,6 +1,4 @@
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        n=len(nums);a=[0]*n;k%=n
-        for i in range(n):
-            a[(i+k)%n]=nums[i]
-        nums[:]=a
+        n=len(nums);s=n-k%n
+        nums[:]=nums[s:]+nums[:s]

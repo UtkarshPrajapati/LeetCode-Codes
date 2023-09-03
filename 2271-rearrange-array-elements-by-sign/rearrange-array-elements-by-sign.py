@@ -1,9 +1,7 @@
 class Solution:
     def rearrangeArray(self,A):
-        pos,neg=[],[]
-        for i in range(len(A)):
-            if A[i]>0: pos.append(A[i])
-            else: neg.append(A[i])
-        for i in range(len(pos)): A[2*i]=pos[i]
-        for i in range(len(neg)): A[2*i+1]=neg[i]
-        return A
+        n=len(A);ans,pi,ni=[0]*n,0,1
+        for i in range(n):
+            if A[i]<0: ans[ni]=A[i];ni+=2
+            else: ans[pi]=A[i];pi+=2
+        return ans

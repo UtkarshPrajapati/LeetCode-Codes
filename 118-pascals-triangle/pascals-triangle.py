@@ -1,9 +1,9 @@
 class Solution:
     def generate(self, n: int) -> List[List[int]]:
-        a,c=[[1],[1,1]],2
-        if n<3: return a[:n]
-        while c!=n:
-            x=a[-1]
-            a.append([1]+[x[i]+x[i+1] for i in range(c-1)]+[1])
-            c+=1
-        return a
+        def nCr(n,r):
+            res=1
+            for i in range(r):
+                res*=n-i
+                res//=i+1
+            return res
+        return [[nCr(r,c) for c in range(r+1)] for r in range(n)]

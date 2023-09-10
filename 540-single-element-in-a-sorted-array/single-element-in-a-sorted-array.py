@@ -1,6 +1,6 @@
 class Solution:
-    def singleNonDuplicate(self, nums: List[int]) -> int:
-        n=len(nums);l,r=0,n-1
+    def singleNonDuplicate(self,nums):
+        l,r=0,len(nums)-1
         while l<r:
             m=(l+r)//2
             if nums[m]!=nums[m^1]: r=m

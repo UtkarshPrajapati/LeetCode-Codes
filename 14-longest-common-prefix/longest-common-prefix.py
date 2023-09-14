@@ -1,7 +1,8 @@
 class Solution:
-    def longestCommonPrefix(self,strs):
-        s,l,r="",min(strs),max(strs)
-        for i in range(min(len(l),len(r))):
-            if l[i]!=r[i]: return s
-            s+=l[i]
-        return s 
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        ans=""
+        for i in zip(*strs):
+            res=set(i)
+            if len(res)==1: ans+=res.pop()
+            else: break
+        return ans

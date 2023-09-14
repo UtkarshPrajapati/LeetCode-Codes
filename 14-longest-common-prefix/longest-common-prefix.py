@@ -3,7 +3,6 @@ class Solution:
         strs.sort()
         s,l,r="",strs[0],strs[-1]
         for i in range(min(len(l),len(r))):
-            a=l[i]
-            if a!=r[i]: return s
-            s+=a
+            if l[i]!=r[i]: return s
+            s+=l[i]
         return s 

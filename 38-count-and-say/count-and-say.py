@@ -6,5 +6,5 @@ class Solution:
         last,c,res=s[0],1,""
         for i in range(1,len(s)):
             if last==s[i]: c+=1
-            else: res+=str(c)+str(last);last,c=s[i],1
-        return res+str(c)+str(last)
+            else: res+=str(c)+last;last,c=s[i],1
+        return res+str(c)+last

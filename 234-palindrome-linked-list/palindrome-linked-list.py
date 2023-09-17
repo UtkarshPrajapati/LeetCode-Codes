@@ -1,11 +1,13 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        rev, slow, fast = None, head, head
+        slow=fast=head
         while fast and fast.next:
-            fast = fast.next.next
-            rev, rev.next, slow = slow, rev, slow.next
-        if fast:
-            slow = slow.next
-        while rev and rev.val == slow.val:
-            slow, rev = slow.next, rev.next
-        return not rev
+            slow,fast=slow.next,fast.next.next
+        prev=None
+        while slow:
+            slow.next,prev,slow=prev,slow,slow.next
+        slow=head
+        while slow and prev:
+            if slow.val!=prev.val: return False
+            slow,prev=slow.next,prev.next
+        return True

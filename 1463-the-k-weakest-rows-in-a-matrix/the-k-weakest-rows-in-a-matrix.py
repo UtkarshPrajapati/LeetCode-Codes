@@ -1,3 +1,5 @@
 class Solution:
     def kWeakestRows(self,mat,k):
-        return [sorted([[i,sum(mat[i])] for i in range(len(mat))],key=lambda x:x[1])[i][0] for i in range(k)]
+        heap=[(sum(row),i) for i,row in enumerate(mat)]
+        heapq.heapify(heap)
+        return [heapq.heappop(heap)[1] for _ in range(k)]

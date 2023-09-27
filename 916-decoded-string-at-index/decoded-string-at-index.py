@@ -1,16 +1,13 @@
 class Solution:
-    def decodeAtIndex(self, s: str, k: int) -> str:
-        length = 0
-        i = 0
-        while length < k:
-            if s[i].isdigit(): length*=int(s[i])
-            else: length += 1
-            i+=1
+    def decodeAtIndex(self,s,k):
+        l=i=0
+        while l<k:
+            l,i=l*int(s[i]) if s[i].isdigit() else l+1,i+1
         for j in range(i-1,-1,-1):
             char=s[j]
             if char.isdigit():
-                length //= int(char)
-                k %= length
+                l//=int(char)
+                k%=l
             else:
-                if k == 0 or k == length: return char
-                length -= 1
+                if k==0 or k==l: return char
+                l-=1

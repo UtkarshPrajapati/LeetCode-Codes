@@ -12,4 +12,4 @@ class Solution:
             for i in range(n-1): 
                 if nums[i]<nums[i+1]: f=False
             return f
-        return mi(nums) or md(nums)
+        return mi(nums) if nums[-1]>=nums[0] else md(nums)

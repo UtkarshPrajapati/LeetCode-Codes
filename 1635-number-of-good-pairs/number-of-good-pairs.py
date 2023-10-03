@@ -1,3 +1,3 @@
 class Solution:
     def numIdenticalPairs(self, nums: List[int]) -> int:
-        return sum(nums[i]==nums[j] for i,j in combinations(range(len(nums)),2) if i<j)
+        return sum(nums[i]==nums[j] for j in range(len(nums)) for i in range(j) if i<j)

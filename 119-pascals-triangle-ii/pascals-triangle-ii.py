@@ -1,6 +1,6 @@
 class Solution:
     def getRow(self,n):
-        dp={0:[1],1:[1,1]}
-        for i in range(2,n+1):
-            dp[i]=[1]+list(map(lambda x,y: x+y,dp[i-1][:-1],dp[i-1][1:]))+[1]
-        return dp[n]
+        row=[1]
+        for _ in range(n):
+            row=[x+y for x,y in zip([0]+row,row+[0])]
+        return row

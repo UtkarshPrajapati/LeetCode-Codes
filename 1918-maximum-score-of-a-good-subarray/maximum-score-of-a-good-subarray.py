@@ -8,5 +8,5 @@ class Solution:
             else: 
                 l-=1
                 m=min(m,nums[l])
-            ms=max(ms,m*(r-l+1))
+            if m*(r-l+1)>ms: ms=m*(r-l+1)
         return ms

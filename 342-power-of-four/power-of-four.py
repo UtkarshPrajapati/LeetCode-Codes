@@ -1,7 +1,3 @@
 class Solution:
-    def isPowerOfFour(self,n):
-        if n<1: return False
-        while n!=1:
-            n,r=divmod(n,4)
-            if r!=0: return False
-        return True
+    def isPowerOfFour(self, n):
+        return n!=0 and n&(n-1)==0 and n&0xAAAAAAAA==0

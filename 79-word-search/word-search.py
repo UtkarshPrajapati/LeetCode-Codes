@@ -1,17 +1,12 @@
 class Solution:
     def exist(self,board,word):
         m,n=len(board),len(board[0])
-        ind=0
+        d=[(1,0),(-1,0),(0,1),(0,-1)]
         def f(i,j,ind):
-            if ind==len(word): return True
-            if i<0 or j<0 or i==m or j==n or board[i][j]!=word[ind] or board[i][j]=='#': return False
-            c=board[i][j]
-            board[i][j]='#'
-            ans=f(i+1,j,ind+1) or f(i,j+1,ind+1) or f(i-1,j,ind+1) or f(i,j-1,ind+1)
-            board[i][j]=c
-            return ans
-        for i in range(m):
-            for j in range(n):
-                if board[i][j]==word[ind]:
-                    if f(i,j,ind): return True
-        return False
+            if ind == len(word): return True
+            if not (0 <= i < m and 0 <= j < n) or board[i][j] != word[ind] or board[i][j] == '#': return False
+            c, board[i][j] = board[i][j], '#'
+            if any(f(i + dx, j + dy, ind + 1) for dx, dy in d): return True
+            board[i][j] = c
+            return False
+        return any(f(i, j, 0) for i in range(m) for j in range(n) if board[i][j] == word[0])

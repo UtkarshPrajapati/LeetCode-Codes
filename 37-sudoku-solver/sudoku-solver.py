@@ -1,6 +1,7 @@
 class Solution:
     def solveSudoku(self, b):
-        f=lambda b,row,col,c: not any(b[i][col]==c or b[row][i]==c or b[3*(row//3)+i//3][3*(col//3)+i%3]==c for i in range(9))
+        def f(b,row,col,c):
+            return not any(b[i][col]==c or b[row][i]==c or b[3*(row//3)+i//3][3*(col//3)+i%3]==c for i in range(9))
         for i in range(9):
             for j in range(9):
                 if b[i][j]==".":

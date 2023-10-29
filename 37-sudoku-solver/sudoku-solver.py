@@ -14,13 +14,13 @@ class Solution:
                     visit.pop(0)
                     rows[i].add(num)
                     cols[j].add(num)
-                    triples[(i // 3) * 3 + j // 3].add(num)
-                    b[i][j] = num
+                    triples[(i//3)*3+j//3].add(num)
+                    b[i][j]=num
                     if dfs(): return True
-                    visit.insert(0, (i, j))
+                    visit.insert(0,(i,j))
                     rows[i].remove(num)
                     cols[j].remove(num)
-                    triples[(i // 3) * 3 + j // 3].remove(num)
-                    b[i][j] = "."
+                    triples[(i//3)*3+j//3].remove(num)
+                    b[i][j]="."
             return False
         dfs()

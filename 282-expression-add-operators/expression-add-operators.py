@@ -1,16 +1,14 @@
 class Solution:
     def addOperators(self, num: str, target: int) -> List[str]:
-        if not num: return []
-        ans, n = [], len(num)
-        def dfs(i=0, tmp='', curr=0, last=0):
-            if i == n and curr == target: ans.append(tmp); return
-            for j in range(i+1, n+1):
-                if j-i>1 and num[i] == '0': break
-                now = int(num[i:j])
-                if i == 0: dfs(j, str(now), now, now)
+        def backtrack(i=0, total=0, last=0, expr='', ans=set()):
+            if i == len(num) and total == target: ans.add(expr);return
+            for j in range(i, len(num)):
+                n = int(num[i:j+1])
+                if i == 0: backtrack(j+1, n, n, str(n), ans)
                 else:
-                    dfs(j, tmp+'+'+str(now), curr+now, now)
-                    dfs(j, tmp+'-'+str(now), curr-now, -now)
-                    dfs(j, tmp+'*'+str(now), curr-last+last*now, last*now)
-        dfs()
-        return ans
+                    backtrack(j+1, total + n, n, expr + '+' + str(n), ans)
+                    backtrack(j+1, total - n, -n, expr + '-' + str(n), ans)
+                    backtrack(j+1, total - last + last * n, last * n, expr + '*' + str(n), ans)
+                if n == 0: break
+            return list(ans)
+        return backtrack()

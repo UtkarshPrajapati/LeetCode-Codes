@@ -3,5 +3,5 @@ class Solution:
         dp={}
         while head:
             if head in dp: return head
-            dp[head]=1
+            dp[head]=None
             head=head.next

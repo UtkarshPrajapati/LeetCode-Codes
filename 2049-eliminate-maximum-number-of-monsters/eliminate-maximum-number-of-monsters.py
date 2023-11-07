@@ -1,8 +1,11 @@
-import numpy as np
+import heapq
 class Solution:
-    def eliminateMaximum(self,dist,speed):
-        time=np.sort(np.array(dist)/np.array(speed))
-        ans=1
-        for i,e in enumerate(time):
-            if e<=i: return i
-        return i+1
+    def eliminateMaximum(self, dist, speed):
+        time = [i/j for i,j in zip(dist,speed)]
+        heapq.heapify(time)
+        i=0
+        while time:
+            if time[0]<=i: return i
+            heapq.heappop(time)
+            i+=1
+        return i

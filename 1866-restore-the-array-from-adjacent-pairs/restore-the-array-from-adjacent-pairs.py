@@ -4,7 +4,7 @@ class Solution:
         for a,b in p:
             d[a].append(b)
             d[b].append(a)
-        res=[[e for e,cnt in Counter([j for i in p for j in i]).items() if cnt==1][0]]
+        res=[[e for e,cnt in Counter(chain(*p)).items() if cnt==1][0]]
         seen=set(res)
         n1=1
         while n1<n+1:

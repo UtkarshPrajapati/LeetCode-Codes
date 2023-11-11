@@ -1,14 +1,15 @@
-class Graph:
-    def __init__(self, n: int, edges: List[List[int]]):
-        self.adj = defaultdict(list)
-        for a, b, c in edges: self.adj[a].append((b, c))
-        self.n = n
+from collections import defaultdict
+import heapq
 
-    def addEdge(self, edge: List[int]) -> None:
+class Graph:
+    def __init__(self, n, edges):
+        self.n = n
+        self.adj = defaultdict(list)
+        for a, b, c in edges: self.addEdge([a, b, c])
+    def addEdge(self, edge):
         a, b, c = edge
         self.adj[a].append((b, c))
-
-    def shortestPath(self, node1: int, node2: int) -> int:
+    def shortestPath(self, node1, node2):
         dist = [float("inf")] * self.n
         dist[node1] = 0
         pq = [(0, node1)]

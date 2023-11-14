@@ -1,9 +1,12 @@
 class Solution(object):
-    def countPalindromicSubsequence(self,s):
-        d=defaultdict(list)
-        for i,c in enumerate(s): d[c].append(i)
-        ans,char=0,set(s)
-        for el in d:
-            if len(d[el])<2: continue
-            ans+=len(char.intersection(s[d[el][0]+1:d[el][-1]]))
+    def countPalindromicSubsequence(self, s):
+        charDict = defaultdict(list)
+        for i, char in enumerate(s):
+            if char not in charDict: charDict[char] = [i, i]
+            else: charDict[char][1] = i
+        ans = 0
+        uniqueChars = set(s)
+        for char in charDict:
+            if charDict[char][1] - charDict[char][0] <= 1: continue
+            ans += len(uniqueChars.intersection(s[charDict[char][0]+1 : charDict[char][1]]))
         return ans

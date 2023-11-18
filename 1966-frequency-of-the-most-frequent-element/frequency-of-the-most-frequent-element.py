@@ -1,11 +1,8 @@
 class Solution:
-    def maxFrequency(self,nums,k):
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        i=0
         nums.sort()
-        heap,t,ans=[],0,0
-        for n in nums:
-            heappush(heap,n)
-            t+=n
-            while t+k<n*len(heap):
-                t-=heappop(heap)
-            ans=max(ans,len(heap))
-        return ans
+        for j in range(len(nums)):
+            k+=nums[j]
+            if k<nums[j]*(j-i+1): k-=nums[i];i+=1
+        return j-i+1

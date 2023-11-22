@@ -1,5 +1,5 @@
 class Solution:
-    def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
+    def findDiagonalOrder(self,nums):
         d = defaultdict(list)
         for i, row in enumerate(nums):
             for j, val in enumerate(row):

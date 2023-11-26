@@ -6,5 +6,6 @@ class Solution:
                 if matrix[i][j]==1: matrix[i][j]+=matrix[i-1][j]
         for i in range(m):
             row=sorted(matrix[i],reverse=True)
-            res=max(res,*[row[j]*(j+1) for j in range(n)])
+            a=[row[j]*(j+1) for j in range(n)]
+            res=max(res,max(a) if a else 0)
         return res

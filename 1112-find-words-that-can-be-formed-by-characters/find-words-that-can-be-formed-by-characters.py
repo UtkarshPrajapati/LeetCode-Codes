@@ -1,6 +1,8 @@
 class Solution:
     def countCharacters(self, words: List[str], chars: str) -> int:
-        c,s=Counter(chars),0
+        s=0
         for i in words:
-            if Counter(i)<=c: s+=len(i)
+            for j in i:
+                if chars.count(j)<i.count(j): break
+            else: s+=len(i)
         return s

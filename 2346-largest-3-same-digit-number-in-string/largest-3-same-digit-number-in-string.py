@@ -1,6 +1,3 @@
 class Solution:
-    def largestGoodInteger(self,n):
-        m=""
-        for i in range(len(n)-2):
-            if n[i]==n[i+1]==n[i+2]: m=max(m,n[i:i+3])
-        return m
+    def largestGoodInteger(self,num):
+        return max([num[i:i+3] for i in range(len(num)-2) if num[i]==num[i+1]==num[i+2]],default="")

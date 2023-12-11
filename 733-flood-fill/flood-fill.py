@@ -8,7 +8,6 @@ class Solution:
             for dx,dy in [(0,1),(0,-1),(1,0),(-1,0)]:
                 nx,ny=x+dx,y+dy
                 if 0<=nx<m and 0<=ny<n and image[nx][ny]==pc and (nx,ny) not in v:
-                    image[nx][ny]=color
                     q.append((nx,ny))
                     v.add((nx,ny))
         return image

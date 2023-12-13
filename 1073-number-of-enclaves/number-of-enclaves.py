@@ -5,12 +5,11 @@ class Solution:
             for j in range(n):
                 if grid[i][j]==1:
                     c+=1
-                    if i in [0,m-1] or j in [0, n-1]: q.append((i,j))
+                    if i in [0,m-1] or j in [0, n-1]: q.append((i,j));v.add((i,j))
         while q:
             x,y=q.popleft()
-            if (x,y) in v: continue
             v.add((x,y))
             for dx,dy in [(0,1),(1,0),(-1,0),(0,-1)]:
                 nx,ny=x+dx,y+dy
-                if 0<=nx<m and 0<=ny<n and grid[nx][ny]==1: q.append((nx,ny))
+                if 0<=nx<m and 0<=ny<n and grid[nx][ny]==1 and (nx,ny) not in v: q.append((nx,ny));v.add((nx,ny))
         return c-len(v)

@@ -12,4 +12,11 @@ class Solution:
                 if dis + w < d[nei]:
                     d[nei] = dis + w
                     heappush(tovis, (d[nei], nei))
-        return max(d) if all(i != float('inf') for i in d) else -1
+        # return max(d) if all(i != float('inf') for i in d) else -1
+        ans=-1
+        for i in d:
+            if i==float("inf"):
+                return -1
+            ans=max(ans,i)
+        return ans
+        

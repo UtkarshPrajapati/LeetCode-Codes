@@ -5,10 +5,20 @@ class Solution:
             v.add(node)
             for nei in g[node]:
                 if nei not in v: dfs(nei,g,v)
+        dx=defaultdict(list)
+        dy=defaultdict(list)
         g=defaultdict(list)
-        for i,x in enumerate(stones):
-            for j,y in enumerate(stones):
-                if x[0]==y[0] or x[1]==y[1]: g[i].append(j)
+        for i,s in enumerate(stones):
+            dx[s[0]].append(i)
+            dy[s[1]].append(i)
+        for x in dx:
+            for i,j in combinations(dx[x],2):
+                g[i].append(j)
+                g[j].append(i)
+        for y in dy:
+            for i,j in combinations(dy[y],2):
+                g[i].append(j)
+                g[j].append(i)
         v,comp=set(),0
         for node in range(n):
             if node not in v: dfs(node,g,v);comp+=1

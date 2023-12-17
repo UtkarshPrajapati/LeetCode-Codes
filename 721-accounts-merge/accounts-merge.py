@@ -18,11 +18,8 @@ class Solution:
         email_to_index = {email: i for i, email in enumerate(email_to_name)}
         uf = UnionFind(len(email_to_name))
         for account in accounts:
-            first_email = account[1]
-            first_index = email_to_index[first_email]
-            for email in account[2:]:
-                index = email_to_index[email]
-                uf.union(first_index, index)
+            first_index = email_to_index[account[1]]
+            for email in account[2:]: uf.union(first_index, email_to_index[email])
         result = {}
         for email, index in email_to_index.items():
             root = uf.find(index)

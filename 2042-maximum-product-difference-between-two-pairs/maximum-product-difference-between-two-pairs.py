@@ -1,10 +1,6 @@
 class Solution:
-    def maxProductDifference(self,nums):
-            mi1=mi2=float('inf')
-            ma1=ma2=float('-inf')
-            for i in nums:
-                if i<=mi1: mi1,mi2=i,mi1
-                elif i<mi2: mi2=i
-                if i>=ma1: ma1,ma2=i,ma1
-                elif i>ma2: ma2=i
-            return ma1*ma2-mi1*mi2
+    def maxProductDifference(self, nums: List[int]) -> int:
+        ma1,mi1=max(nums),min(nums)
+        nums.remove(ma1)
+        nums.remove(mi1)
+        return (ma1*max(nums))-(mi1*min(nums))

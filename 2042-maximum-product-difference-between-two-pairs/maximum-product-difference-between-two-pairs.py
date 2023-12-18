@@ -1,6 +1,7 @@
 class Solution:
     def maxProductDifference(self,nums):
-            mi1,mi2,ma1,ma2=float('inf'),float('inf'),float('-inf'),float('-inf')
+            mi1=mi2=float('inf')
+            ma1=ma2=float('-inf')
             for i in nums:
                 if i<=mi1: mi1,mi2=i,mi1
                 elif i<mi2: mi2=i

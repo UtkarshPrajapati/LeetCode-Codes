@@ -1,11 +1,8 @@
 class Solution:
-    def minSteps(self, s: str, t: str) -> int:
-        counter_s = Counter(s)
-        counter_t = Counter(t)
-        steps = 0
-        for char in counter_s:
-            if char in counter_t:
-                if counter_s[char] > counter_t[char]:
-                    steps += counter_s[char] - counter_t[char]
-            else: steps += counter_s[char]
-        return steps
+    def minSteps(self,s,t):
+        c1,c2,ans=Counter(s),Counter(t),0
+        for ch in c1:
+            if ch in c2:
+                if c1[ch]>c2[ch]: ans+=c1[ch]-c2[ch]
+            else: ans+=c1[ch]
+        return ans

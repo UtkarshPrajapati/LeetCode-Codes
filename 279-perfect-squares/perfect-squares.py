@@ -1,9 +1,6 @@
 class Solution:
-    def numSquares(self, n: int) -> int:
-        dp=[0]+[float('inf')]*n
-        for i in range(1,n+1):
-            j=1
-            while j*j<=i:
-                dp[i]=min(dp[i],dp[i-j*j]+1)
-                j+=1
-        return dp[n]
+    def numSquares(self,n):
+        sqr = int(n**0.5)
+        if sqr*sqr==n or any((n-i*i)**0.5%1==0 for i in range(1,sqr+1)): return 1 if sqr*sqr==n else 2
+        while n%4==0: n//=4
+        return 4 if n%8==7 else 3

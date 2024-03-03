@@ -1,12 +1,8 @@
 class Solution:
-    def removeNthFromEnd(self,head,n):
-        if not head.next: return 
-        l,a=1,head
-        while a.next:
-            l,a=l+1,a.next
-        if l==n: return head.next
-        c,a=1,head
-        while c!=l-n:
-            c,a=c+1,a.next
-        a.next=a.next.next
+    def removeNthFromEnd(self, head, n):
+        fast=slow=head
+        for _ in range(n): fast=fast.next
+        if not fast: return head.next
+        while fast.next: fast,slow=fast.next,slow.next
+        slow.next=slow.next.next
         return head

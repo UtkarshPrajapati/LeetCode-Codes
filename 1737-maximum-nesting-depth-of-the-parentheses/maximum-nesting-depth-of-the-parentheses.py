@@ -4,6 +4,6 @@ class Solution:
         for i in s:
             if i=='(':
                 c+=1
-                if c>ans: ans=c
+                ans=max(ans,c)
             elif i==')': c-=1
         return ans

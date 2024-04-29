@@ -1,11 +1,5 @@
 class Solution:
-    def minOperations(self, nums: List[int], k: int) -> int:
-        fx=0
-        for i in nums:
-            fx^=i
-        xb=bin(fx)[2:].zfill(len(bin(k))-2)
-        kb=bin(k)[2:].zfill(len(bin(fx))-2)
-        c=0
-        for i,j in zip(xb,kb):
-            if i!=j: c+=1
-        return c
+    def minOperations(self,nums,k):
+        fx=reduce(xor,nums)
+        m=len(bin(k if k>fx else fx))-2
+        return sum(i!=j for i,j in zip(bin(fx)[2:].zfill(m),bin(k)[2:].zfill(m)))

@@ -6,13 +6,13 @@
 class Solution:
     def doubleIt(self, head: Optional[ListNode]) -> Optional[ListNode]:
         sys.set_int_max_str_digits(10**6)
-        l=''
+        num=0
         while head:
-            l+=str(head.val)
+            num=num*10+head.val
             head=head.next
-        l=list(str(int(l)*2))
-        h=n=ListNode(l.pop(0))
-        while l:
-            n.next=ListNode(l.pop(0))
+        num=str(num*2)
+        h=n=ListNode(num[0])
+        for d in num[1:]:
+            n.next=ListNode(d)
             n=n.next
         return h

@@ -9,5 +9,4 @@ class Solution:
             if sum(grid[i][j] for i in range(m))<m/2:
                 for i in range(m):
                     grid[i][j]=1-grid[i][j]
-        print(grid)
         return sum(int(''.join(map(str,row)),2) for row in grid)

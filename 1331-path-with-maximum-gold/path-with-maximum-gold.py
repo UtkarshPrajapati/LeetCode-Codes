@@ -1,19 +1,6 @@
 class Solution:
     def getMaximumGold(self, grid: List[List[int]]) -> int:
-        m,n=len(grid),len(grid[0])
-
+        m,n,vis,dirs=len(grid),len(grid[0]),set(),[(1,0),(-1,0),(0,1),(0,-1)]
         def f(i,j,vis):
-            t=[]
-            if i+1<m and grid[i+1][j]!=0 and (i+1,j) not in vis: t.append(f(i+1,j,vis|{(i,j)}))
-            if i-1>=0 and grid[i-1][j]!=0 and (i-1,j) not in vis: t.append(f(i-1,j,vis|{(i,j)}))
-            if j+1<n and grid[i][j+1]!=0 and (i,j+1) not in vis: t.append(f(i,j+1,vis|{(i,j)}))
-            if j-1>=0 and grid[i][j-1]!=0 and (i,j-1) not in vis: t.append(f(i,j-1,vis|{(i,j)}))
-            return grid[i][j]+max(t,default=0)
-
-        l=[]
-        vis=set()
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j]!=0: l.append(f(i,j,vis))
-        return max(l,default=0)
-        
+            return grid[i][j]+max([f(i+di,j+dj,vis|{(i,j)}) for di,dj in dirs if 0<=i+di<m and 0<=j+dj<n and grid[i+di][j+dj]!=0 and (i+di,j+dj) not in vis],default=0)
+        return max([f(i,j,vis) for i in range(m) for j in range(n) if grid[i][j]!=0],default=0)
